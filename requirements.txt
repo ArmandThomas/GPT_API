@@ -1,0 +1,7 @@
+undetected-chromedriver==3.5.3
+selenium
+python-dotenv
+bs4
+uvicorn
+fastapi
+pyvirtualdisplay
