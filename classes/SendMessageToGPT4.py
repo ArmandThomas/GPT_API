@@ -35,6 +35,8 @@ class SendMessageToGPT4:
 
     def send_message(self, message):
 
+        self.driver.save_screenshot('screenshot.png')
+
         self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['send_message-area'])))
         self.driver.find_element(By.XPATH, x_path['send_message-area']).send_keys(message)
 
