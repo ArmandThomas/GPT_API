@@ -30,7 +30,7 @@ driver.get("https://chat.openai.com/auth/login")
 try:
     connect_to_google = ConnectToGoogle(driver)
     connect_to_google.login()
-
+    time.sleep(5)
     driver.save_screenshot("screen-login.png")
 except:
     driver.save_screenshot('screenshot.png')
