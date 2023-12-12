@@ -2,6 +2,7 @@ import undetected_chromedriver as uc
 import time
 from classes.ConnectToGoogle import ConnectToGoogle
 from classes.SendMessageToGPT4 import SendMessageToGPT4
+from classes.ConnectWithMicrosoft import ConnectWithMicrosoft
 from fastapi import FastAPI
 from pydantic import BaseModel
 from pyvirtualdisplay import Display
@@ -26,14 +27,8 @@ driver = uc.Chrome(options=Options())
 
 driver.get("https://chat.openai.com/auth/login")
 
-
-try:
-    connect_to_google = ConnectToGoogle(driver)
-    connect_to_google.login()
-    time.sleep(5)
-    driver.save_screenshot("screen-login.png")
-except:
-    driver.save_screenshot('screenshot.png')
+connect_with_microsoft = ConnectWithMicrosoft(driver)
+connect_with_microsoft.login()
 
 @app.get("/")
 async def root():

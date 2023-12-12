@@ -4,11 +4,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from bs4 import BeautifulSoup
 
-x_path = {
-    'send_message-area': '/html/body/div[1]/div/div[2]/div[1]/div[2]/main/div[2]/div[2]/form/div/div[2]/div/textarea',
-    'send_message-btn': '/html/body/div[1]/div/div[2]/div[1]/div[2]/main/div[2]/div[2]/form/div/div[2]/div/button',
-    'status_assistant' : '/html/body/div[1]/div[1]/div[2]/div/main/div[3]/form/div/div[1]/div/button',
+id = {
+    'send_message-area': 'prompt-textarea',
 }
+
 class SendMessageToGPT4:
     def __init__(self, driver, message):
         self.driver = driver
@@ -37,11 +36,13 @@ class SendMessageToGPT4:
 
         self.driver.save_screenshot('screenshot.png')
 
-        self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['send_message-area'])))
-        self.driver.find_element(By.XPATH, x_path['send_message-area']).send_keys(message)
+        message_area = self.wait.until(EC.element_to_be_clickable((By.ID, id['send_message-area'])))
+        message_area.send_keys(message)
 
-        self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['send_message-btn'])))
-        self.driver.find_element(By.XPATH, x_path['send_message-btn']).click()
+        parent = message_area.find_element(By.XPATH, '..')
+
+        btn = parent.find_element(By.TAG_NAME, 'button')
+        btn.click()
 
         has_replied = False
 
