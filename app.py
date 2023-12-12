@@ -27,6 +27,8 @@ driver = uc.Chrome(options=Options())
 
 driver.get("https://chat.openai.com/auth/login")
 
+time.sleep(5)
+
 connect_with_microsoft = ConnectWithMicrosoft(driver)
 connect_with_microsoft.login()
 
