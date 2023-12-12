@@ -27,9 +27,13 @@ class ConnectWithMicrosoft():
         self.gpt_to_microsoft()
 
     def gpt_to_microsoft(self):
+        time.sleep(1)
+        self.driver.screenshot('btn.png')
         self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['btn'])))
         self.driver.find_element(By.XPATH, x_path['btn']).click()
 
+        time.sleep(1)
+        self.driver.screenshot('btn-login_with_microsoft.png')
         self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['btn-login_with_microsoft'])))
         self.driver.find_element(By.XPATH, x_path['btn-login_with_microsoft']).click()
 
