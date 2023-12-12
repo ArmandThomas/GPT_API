@@ -32,6 +32,8 @@ time.sleep(5)
 connect_with_microsoft = ConnectWithMicrosoft(driver)
 connect_with_microsoft.login()
 
+driver.save_screenshot('screenshot.png')
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
