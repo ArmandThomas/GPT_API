@@ -9,8 +9,6 @@ password = env_vars['PASSWORD']
 email = env_vars['EMAIL']
 
 x_path = {
-    'btn' : '/html/body/div[1]/div[1]/div[2]/div[1]/div/div/button[1]',
-    'btn-login_with_microsoft': '/html/body/div/main/section/div/div/div/div[4]/form[1]/button',
     'email' : '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[2]/div[2]/div/input[1]',
     'btn-next': '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div[1]/div[3]/div/div/div/div[4]/div/div/div/div/input',
     'password': '/html/body/div/form[1]/div/div/div[2]/div[1]/div/div/div/div/div/div[3]/div/div[2]/div/div[3]/div/div[2]/input',
@@ -29,13 +27,13 @@ class ConnectWithMicrosoft():
     def gpt_to_microsoft(self):
         time.sleep(1)
         self.driver.save_screenshot('btn.png')
-        self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['btn'])))
-        self.driver.find_element(By.XPATH, x_path['btn']).click()
+        self.wait.until(EC.element_to_be_clickable((By.TAG_NAME, 'button')))
+        self.driver.find_element(By.TAG_NAME, 'button').click()
 
         time.sleep(1)
         self.driver.save_screenshot('btn-login_with_microsoft.png')
-        self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['btn-login_with_microsoft'])))
-        self.driver.find_element(By.XPATH, x_path['btn-login_with_microsoft']).click()
+        self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-provider="windowslive"]')))
+        self.driver.find_element(By.CSS_SELECTOR, 'button[data-provider="windowslive"]').click()
 
     def send_email(self):
         self.wait.until(EC.element_to_be_clickable((By.XPATH, x_path['email'])))
